@@ -142,14 +142,13 @@ class BlackjackUI {
     this.resetGameButton = document.getElementById('reset-game');
     this.scoreTableBody = document.querySelector('#score-table tbody');
 
-    // Verificar se todos os elementos necessários existem
     if (!this.playersArea || !this.nextRoundButton || !this.resetGameButton) {
       console.error('Required DOM elements not found!');
       return;
     }
 
     this.playerViews = new Map();
-    this.game = null; // Referência para o jogo
+    this.game = null;
 
     if (this.clearLogButton) {
       this.clearLogButton.addEventListener('click', () => this.clearLog());
@@ -176,10 +175,10 @@ class BlackjackUI {
   }
 
   bindNextRound(handler) {
-    console.log('Binding next round handler...'); // Debug log
+    console.log('Binding next round handler...');
     if (this.nextRoundButton) {
       this.nextRoundButton.addEventListener('click', () => {
-        console.log('Next round button clicked!'); // Debug log
+        console.log('Next round button clicked!');
         handler();
       });
     } else {
@@ -285,16 +284,12 @@ class BlackjackUI {
     const view = this.playerViews.get(player);
     if (!view) return;
     
-    // Durante o jogo, só mostrar cartas do jogador atual
-    // Na fase final, mostrar todas as cartas
     const hideCards = gamePhase === 'playing' && !isCurrentPlayer;
     
     this.renderCards(view.handEl, player.hand.cards, { hideAll: hideCards });
   }
 
   renderDealer(gamePhase = 'playing') {
-    // Durante o jogo, esconder a segunda carta do dealer
-    // Na fase final, mostrar todas as cartas
     const hideSecondCard = gamePhase === 'playing';
     
     this.renderCards(this.dealerHand, this.dealer.hand.cards, { hideSecondCard });
@@ -335,7 +330,6 @@ class BlackjackUI {
       const backPattern = document.createElement('div');
       backPattern.className = 'card-back';
       
-      // Criar um padrão mais elegante com múltiplos elementos
       const centerIcon = document.createElement('div');
       centerIcon.style.cssText = `
         font-size: 3rem;
@@ -380,11 +374,9 @@ class BlackjackUI {
 
   updateDealerTotal(gamePhase = 'playing') {
     if (gamePhase === 'playing' && this.dealer.hand.cards.length >= 2) {
-      // Durante o jogo, mostrar apenas o valor da primeira carta
       const firstCardValue = this.dealer.hand.cards[0].getValue();
       this.dealerTotal.textContent = `Total: ${firstCardValue} + ?`;
     } else {
-      // No final, mostrar total real
       this.dealerTotal.textContent = `Total: ${this.dealer.hand.getValue()}`;
     }
   }
@@ -418,7 +410,7 @@ class BlackjackUI {
   }
 
   enableNextRound(enabled) {
-    console.log('Enabling next round button:', enabled); // Debug log
+    console.log('Enabling next round button:', enabled);
     if (this.nextRoundButton) {
       this.nextRoundButton.disabled = !enabled;
     }
@@ -447,7 +439,6 @@ class BlackjackGame {
     this.roundActive = false;
     this.currentPlayerIndex = 0;
 
-    // Configurar referência do jogo na UI
     this.ui.setGame(this);
     
     this.deck.shuffle();
@@ -468,7 +459,7 @@ class BlackjackGame {
   }
 
   startRound() {
-    console.log('Starting new round...'); // Debug log
+    console.log('Starting new round...');
     this.players.forEach((player) => player.resetForRound());
     this.dealer.resetForRound();
     this.roundActive = true;
@@ -491,14 +482,12 @@ class BlackjackGame {
       this.players.forEach((player) => {
         const card = this.drawCard();
         player.hand.addCard(card);
-        // Não mostrar cartas ainda - serão mostradas quando for a vez do jogador
         this.ui.log(`${player.name} recebeu uma carta.`);
       });
       
       const dealerCard = this.drawCard();
       this.dealer.hand.addCard(dealerCard);
       
-      // Log diferente para primeira e segunda carta do dealer
       if (i === 0) {
         this.ui.log(`Dealer recebeu ${dealerCard.name}.`);
       } else {
@@ -506,13 +495,10 @@ class BlackjackGame {
       }
     }
     
-    // Renderizar cartas com as regras de visibilidade
-    this.ui.renderDealer('playing'); // Esconder segunda carta
-    this.ui.renderAllPlayers(this.currentPlayerIndex, 'playing'); // Mostrar só do jogador atual
+    this.ui.renderDealer('playing');
+    this.ui.renderAllPlayers(this.currentPlayerIndex, 'playing');
     
-    // Atualizar totais apenas do jogador atual
     this.ui.updateTotals(this.currentPlayer);
-    // Mostrar total do dealer apenas com a primeira carta
     this.ui.updateDealerTotal('playing');
   }
 
@@ -546,9 +532,8 @@ class BlackjackGame {
     this.ui.setActivePlayer(player);
     this.ui.updateRoundStatus(`Vez de ${player.name}. Escolha pedir carta ou manter.`);
     
-    // Atualizar visualização das cartas - mostrar apenas do jogador atual
     this.ui.renderAllPlayers(this.currentPlayerIndex, 'playing');
-    this.ui.updateTotals(player); // Mostrar total apenas do jogador atual
+    this.ui.updateTotals(player);
   }
 
   handleHit(player) {
@@ -559,7 +544,6 @@ class BlackjackGame {
     const card = this.drawCard();
     player.hand.addCard(card);
     
-    // Renderizar apenas o jogador atual
     this.ui.renderPlayer(player, true, 'playing');
     this.ui.updateTotals(player);
     this.ui.log(`${player.name} pediu carta (${card.name}).`);
@@ -604,18 +588,19 @@ class BlackjackGame {
     const player = this.currentPlayer;
     this.ui.setActivePlayer(player);
     this.ui.updateRoundStatus(`Vez de ${player.name}. Escolha pedir carta ou manter.`);
+    
+    this.ui.renderAllPlayers(this.currentPlayerIndex, 'playing');
+    this.ui.updateTotals(player);
   }
 
   playDealerTurn() {
     this.ui.setDealerActive(true);
     this.ui.updateRoundStatus('Dealer está jogando...');
     
-    // Revelar todas as cartas agora que é a vez do dealer
-    this.ui.renderAllPlayers(-1, 'final'); // Mostrar cartas de todos os jogadores
-    this.ui.renderDealer('final'); // Mostrar todas as cartas do dealer
-    this.ui.updateDealerTotal('final'); // Mostrar total real do dealer
+    this.ui.renderAllPlayers(-1, 'final');
+    this.ui.renderDealer('final');
+    this.ui.updateDealerTotal('final');
     
-    // Atualizar totais de todos os jogadores
     this.players.forEach(player => this.ui.updateTotals(player));
 
     this.ui.log(`Dealer revela sua segunda carta: ${this.dealer.hand.cards[1].name}`);
@@ -725,16 +710,14 @@ function initializeBlackjackGame() {
   if (playerNames.length < 2) {
     window.location.href = 'index.html';
   } else {
-    console.log('Players found:', playerNames); // Debug log
+    console.log('Players found:', playerNames);
     const ui = new BlackjackUI();
     const game = new BlackjackGame(playerNames, ui);
 
-    // Expose for debugging if needed
     window.blackjackGame = game;
   }
 }
 
-// Inicializar quando o DOM estiver pronto
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializeBlackjackGame);
 } else {

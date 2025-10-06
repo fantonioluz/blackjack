@@ -1,6 +1,5 @@
 const MAX_PLAYERS = 4;
 
-// Função principal que inicializa o jogo
 function initializeGame() {
   const playersGrid = document.getElementById('players-grid');
   const addPlayerButton = document.getElementById('add-player');
@@ -49,7 +48,7 @@ addPlayerButton.addEventListener('click', () => {
 });
 
 setupForm.addEventListener('submit', (event) => {
-  console.log('Form submitted!'); // Debug log
+  console.log('Form submitted!');
   event.preventDefault();
 
   const names = Array.from(playersGrid.querySelectorAll('.player-name'))
@@ -71,7 +70,6 @@ setupForm.addEventListener('submit', (event) => {
 
 }
 
-// Inicializar quando o DOM estiver pronto
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializeGame);
 } else {
