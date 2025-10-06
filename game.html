@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blackjack Local - Mesa de Jogo</title>
+    <link rel="stylesheet" href="css/game.css" />
+  </head>
+  <body>
+    <main class="game-container">
+      <section class="scoreboard">
+        <header>
+          <h1>Mesa de Blackjack</h1>
+          <p id="round-status">Prepare-se para a rodada!</p>
+        </header>
+        <table id="score-table">
+          <thead>
+            <tr>
+              <th>Participante</th>
+              <th>Vitórias</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="table-area">
+        <div class="dealer" id="dealer-area">
+          <h2>Dealer</h2>
+          <div class="hand" id="dealer-hand"></div>
+          <p class="hand-value" id="dealer-total">Total: 0</p>
+        </div>
+        <div class="players" id="players-area"></div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="log-header">
+          <h2>Registro da rodada</h2>
+          <button id="clear-log" class="ghost">Limpar</button>
+        </div>
+        <ul id="event-log" aria-live="polite"></ul>
+        <div class="round-controls">
+          <button id="next-round" disabled>Próxima rodada</button>
+          <button id="reset-game" class="ghost">Encerrar sessão</button>
+        </div>
+      </aside>
+    </main>
+    <script src="js/game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,170 @@
+:root {
+  --bg-gradient: radial-gradient(circle at top, #132743, #050913 70%);
+  --card-bg: rgba(12, 24, 45, 0.85);
+  --accent: #f4b400;
+  --text-color: #f2f5f7;
+  --muted: #9caec7;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-gradient);
+  color: var(--text-color);
+  padding: 2rem;
+}
+
+.setup-container {
+  display: grid;
+  gap: 2rem;
+  max-width: 960px;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.setup-card {
+  background: var(--card-bg);
+  border-radius: 18px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+.setup-card header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.setup-card h1 {
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.setup-card p {
+  color: var(--muted);
+}
+
+.players-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.player-field {
+  display: grid;
+  gap: 0.45rem;
+  font-size: 0.95rem;
+}
+
+.player-field span {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.player-field input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: inherit;
+  transition: border 0.2s ease, transform 0.2s ease;
+}
+
+.player-field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+button {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+}
+
+button.primary {
+  background: var(--accent);
+  color: #1c2135;
+}
+
+button:not(.primary) {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+}
+
+.rules {
+  background: rgba(8, 18, 35, 0.7);
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+.rules h2 {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.rules ol {
+  display: grid;
+  gap: 0.75rem;
+  counter-reset: rules-counter;
+  list-style: none;
+}
+
+.rules li {
+  counter-increment: rules-counter;
+  position: relative;
+  padding-left: 2.5rem;
+  color: var(--muted);
+}
+
+.rules li::before {
+  content: counter(rules-counter, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}

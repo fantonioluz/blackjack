@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Configuração - Blackjack Cooperativo</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <main class="setup-container">
+      <section class="setup-card">
+        <header>
+          <h1>Blackjack Local</h1>
+          <p>Configure os jogadores para começar a partida.</p>
+        </header>
+        <form id="setup-form" autocomplete="off">
+          <div class="players-grid" id="players-grid">
+            <label class="player-field">
+              <span>Jogador 1</span>
+              <input
+                type="text"
+                name="player-1"
+                class="player-name"
+                placeholder="Nome do jogador"
+                required
+              />
+            </label>
+            <label class="player-field">
+              <span>Jogador 2</span>
+              <input
+                type="text"
+                name="player-2"
+                class="player-name"
+                placeholder="Nome do jogador"
+                required
+              />
+            </label>
+          </div>
+          <div class="actions">
+            <button type="button" id="add-player">Adicionar jogador</button>
+            <button type="submit" class="primary">Iniciar jogo</button>
+          </div>
+        </form>
+      </section>
+      <section class="rules">
+        <h2>Como funciona?</h2>
+        <ol>
+          <li>Insira ao menos dois jogadores humanos.</li>
+          <li>Todos desafiarão o dealer na mesma tela.</li>
+          <li>Vitórias são somadas ao placar a cada rodada.</li>
+        </ol>
+      </section>
+    </main>
+    <script src="js/index.js"></script>
+  </body>
+</html>
