@@ -6,7 +6,7 @@ import './Game.css'
 function Game({ roomCode, playerName, onLeave }) {
   const { socket } = useSocket()
   const [gameState, setGameState] = useState(null)
-  const [players, setPlayers] = useState([])
+  const [players, setPlayers] = useState([playerName])
   const [waitingForStart, setWaitingForStart] = useState(true)
 
   useEffect(() => {
@@ -15,7 +15,20 @@ function Game({ roomCode, playerName, onLeave }) {
     // Listeners para eventos do jogo
     socket.on('player_joined', (data) => {
       console.log('Jogador entrou:', data)
-      setPlayers(data.players)
+      if (data.players) {
+        setPlayers(data.players)
+      }
+    })
+
+    socket.on('join_result', (data) => {
+      console.log('Join result:', data)
+      if (data.success && data.players) {
+        setPlayers(data.players)
+      }
+    })
+
+    socket.on('room_created', (data) => {
+      console.log('Room created:', data)
     })
 
     socket.on('game_started', (state) => {
@@ -40,6 +53,8 @@ function Game({ roomCode, playerName, onLeave }) {
 
     return () => {
       socket.off('player_joined')
+      socket.off('join_result')
+      socket.off('room_created')
       socket.off('game_started')
       socket.off('game_update')
       socket.off('player_left')

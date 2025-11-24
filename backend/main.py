@@ -72,6 +72,11 @@ async def create_room(sid, data):
     max_players = data.get('max_players', 4)
     
     result = await game_manager.create_room(sid, room_code, player_name, max_players)
+    
+    if result['success']:
+        # Adicionar socket à sala do Socket.IO
+        await sio.enter_room(sid, room_code)
+    
     await sio.emit('room_created', result, room=sid)
 
 

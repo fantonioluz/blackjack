@@ -446,7 +446,8 @@ class GameManager:
         return {
             'success': True,
             'room_code': room_code,
-            'player_name': player_name
+            'player_name': player_name,
+            'players': [p.name for p in game.players]
         }
     
     async def join_room(self, sid: str, room_code: str, player_name: str) -> dict:
