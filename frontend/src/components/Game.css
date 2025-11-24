@@ -1,0 +1,298 @@
+.game-container {
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  padding: 1.5rem;
+}
+
+.waiting-room {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  background: var(--panel);
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.5);
+}
+
+.waiting-room h1 {
+  color: var(--accent);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.waiting-room .subtitle {
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.start-button, .leave-button, .leave-button-small {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.start-button {
+  background: var(--success);
+  color: white;
+}
+
+.start-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+}
+
+.leave-button, .leave-button-small {
+  background: var(--danger);
+  color: white;
+}
+
+.leave-button:hover, .leave-button-small:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(240, 84, 84, 0.4);
+}
+
+.game-header {
+  margin-bottom: 1.5rem;
+}
+
+.room-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--panel);
+  border-radius: 12px;
+}
+
+.room-info h2 {
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+
+.leave-button-small {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.table-area {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.dealer-section {
+  background: linear-gradient(145deg, var(--table-green), var(--table-dark));
+  border-radius: 18px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.dealer-section h3 {
+  color: var(--accent);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.dealer-hand {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.hand-value {
+  color: var(--light);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.game-status {
+  text-align: center;
+  padding: 1rem;
+  background: var(--panel);
+  border-radius: 12px;
+}
+
+.turn-indicator {
+  font-size: 1.2rem;
+  color: var(--light);
+}
+
+.round-finished {
+  font-size: 1.3rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.players-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.player-area {
+  background: rgba(8, 26, 41, 0.7);
+  border-radius: 18px;
+  padding: 1.5rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.player-area.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(244, 180, 0, 0.3);
+}
+
+.player-area.me {
+  background: rgba(15, 107, 61, 0.2);
+}
+
+.player-area h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: var(--light);
+}
+
+.wins {
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.player-hand {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.player-status {
+  text-align: center;
+  font-weight: 600;
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.player-status.bust {
+  background: rgba(240, 84, 84, 0.2);
+  color: var(--danger);
+}
+
+.player-status.stand {
+  background: rgba(76, 175, 80, 0.2);
+  color: var(--success);
+}
+
+.player-status.playing {
+  background: rgba(244, 180, 0, 0.2);
+  color: var(--accent);
+}
+
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.hit-button, .stand-button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hit-button {
+  background: var(--accent);
+  color: #000;
+}
+
+.hit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 180, 0, 0.4);
+}
+
+.stand-button {
+  background: var(--success);
+  color: white;
+}
+
+.stand-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.sidebar {
+  background: var(--panel);
+  border-radius: 18px;
+  padding: 1.5rem;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h3 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.event-log {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.event-log li {
+  padding: 0.5rem;
+  margin-bottom: 0.25rem;
+  color: var(--light);
+  font-size: 0.9rem;
+  border-left: 3px solid var(--accent);
+  padding-left: 0.75rem;
+}
+
+.next-round-button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next-round-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(244, 180, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .players-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .room-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,18 @@
+[project]
+name = "blackjack-backend"
+version = "1.0.0"
+description = "Backend multiplayer para jogo Blackjack"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.38.0",
+    "python-socketio>=5.15.0",
+    "python-multipart>=0.0.16",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "ruff>=0.7.0",
+]

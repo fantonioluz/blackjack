@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+:root {
+  --bg-dark: #010407;
+  --bg-gradient: radial-gradient(circle at top, #04111f, #010407 75%);
+  --panel: rgba(8, 26, 41, 0.9);
+  --accent: #f4b400;
+  --danger: #f05454;
+  --success: #4caf50;
+  --light: #f6f8fb;
+  --muted: #aeb6c1;
+  --table-green: #0f6b3d;
+  --table-dark: #0a4124;
+}
